@@ -24,7 +24,7 @@ class Round {
   }
 
   calculatePercentageCorrect() {
-   return Math.floor((this.correctGuesses.length / this.deck.countCards()) * 100);
+    return Math.floor((this.correctGuesses.length / this.deck.countCards()) * 100);
   }
 
   endRound() {
