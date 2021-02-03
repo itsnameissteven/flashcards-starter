@@ -12,8 +12,6 @@ describe('Round', function() {
   
   
   it('should be a function', () => {
-    const deckOfCards = new Deck([card1, card2, card3]);
-    const round = new Round(deckOfCards);
     expect(Round).to.be.a('function');
   });
 
@@ -47,7 +45,7 @@ describe('Round', function() {
     it('should instantiate a new instance of Turn', () => {
       const deckOfCards = new Deck([card1, card2, card3]);
       const round = new Round(deckOfCards);
-      const turn = round.takeTurn('object');
+      round.takeTurn('object');
       expect(round.currentTurn).to.be.an.instanceOf(Turn);
     });
 
@@ -76,35 +74,38 @@ describe('Round', function() {
       expect(round.incorrectGuesses[0].id).to.deep.equal(1);
     });
 
-    it.only('should give feedback on answers', () => {
+    it('should give feedback on answers', () => {
       const deckOfCards = new Deck([card1, card2, card3]);
       const round = new Round(deckOfCards);
       const turn1 = round.takeTurn('object');
-      const turn2 = round.takeTurn('map()');
+      const turn2 = round.takeTurn('reduce()');
       expect(turn1).to.deep.equal('correct!');
       expect(turn2).to.deep.equal('incorrect!');
     });
 
-    it.skip('should change current card to next card after turn', () => {
+    it('should change current card to next card after turn', () => {
+      const deckOfCards = new Deck([card1, card2, card3]);
       const round = new Round(deckOfCards);
       round.takeTurn('object'); 
       expect(round.returnCurrentCard()).to.deep.equal(card2);
     });
 
-    it.skip('should calculate the percentage of correct answers', () => {
+    it('should calculate the percentage of correct answers', () => {
+      const deckOfCards = new Deck([card1, card2, card3]);
       const round = new Round(deckOfCards);
       round.takeTurn('object');
       round.takeTurn('reduce()');
       round.takeTurn('callback function');
-      expect(round.calculatePercentaceCorrect()).to.deep.equal(66)
+      expect(round.calculatePercentageCorrect()).to.deep.equal(66)
     });
 
-    it.skip('should return a message with percentage correct', () => {
+    it('should return a message with percentage correct', () => {
+      const deckOfCards = new Deck([card1, card2, card3])
       const round = new Round(deckOfCards);
       round.takeTurn('object');
       round.takeTurn('reduce()');
       round.takeTurn('callback function');
-      expect(round.endRound()).to.deepEqual('Round over you answered 66 % of the questions correctly!');
+      expect(round.endRound()).to.deep.equal('Round over you answered 66% of the questions correctly!');
     });
     
   });

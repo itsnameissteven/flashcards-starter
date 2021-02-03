@@ -14,13 +14,21 @@ class Round {
 
   takeTurn(guess) {
     this.currentTurn = new Turn(guess, this.returnCurrentCard());
-    if (this.currentTurn.evaluateGuess()){
+    if (this.currentTurn.evaluateGuess()) {
       this.correctGuesses.push(this.returnCurrentCard());
-    } else{
+    } else {
       this.incorrectGuesses.push(this.returnCurrentCard());
-    };
-    this.turns++
-    return this.currentTurn.giveFeedback()
+    }
+    this.turns++;
+    return this.currentTurn.giveFeedback();
+  }
+
+  calculatePercentageCorrect() {
+   return Math.floor((this.correctGuesses.length / this.deck.countCards()) * 100);
+  }
+
+  endRound() {
+    return `Round over you answered ${this.calculatePercentageCorrect()}% of the questions correctly!`;
   }
 }
 
