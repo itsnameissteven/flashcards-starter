@@ -9,13 +9,18 @@ class Round {
   }
 
   returnCurrentCard() {
-    return this.deck.cards[0]
+    return this.deck.cards[this.turns]
   }
 
   takeTurn(guess) {
-    const currentTurn = new Turn(guess, this.returnCurrentCard())
-
-    return currentTurn
+    this.currentTurn = new Turn(guess, this.returnCurrentCard());
+    if (this.currentTurn.evaluateGuess()){
+      this.correctGuesses.push(this.returnCurrentCard());
+    } else{
+      this.incorrectGuesses.push(this.returnCurrentCard());
+    };
+    this.turns++
+    return this.currentTurn.giveFeedback()
   }
 }
 
