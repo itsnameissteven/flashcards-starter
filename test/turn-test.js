@@ -40,7 +40,7 @@ describe('Turn', () => {
     const turn1 = new Turn('false', card);
     const turn2 = new Turn('true', card);
     expect(turn1.evaluateGuess()).to.deep.equal(false);
-    expect(turn2.evaluateGuess()).to.deep.equal(true)
+    expect(turn2.evaluateGuess()).to.deep.equal(true);
   });
 
   it('it should give positive feedback', () => {
