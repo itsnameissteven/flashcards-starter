@@ -18,10 +18,12 @@ class Game {
   }
 
   start() {
-    const cards =[]
+    const cards =[];
     prototypeQuestions.forEach(element => cards.push(new Card(element['id'], element['question'], element['answers'], element['correctAnswer'])));
-    const deck = new Deck(cards)
-    this.currentRound = new Round(deck)
+    const deck = new Deck(cards);
+    this.currentRound = new Round(deck);
+    this.printMessage(deck, this.currentRound);
+    this.printQuestion(this.currentRound);
   }
 }
 
