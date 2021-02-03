@@ -8,9 +8,9 @@ describe('Deck', () => {
   const card2 = new Card(52, "What is Steven\'s favorite meal of the day?", ["breakfast", "lunch", "dinner"], "breakfast");
 
   it('should be a function', () => { 
-    expect(Deck).to.be.a('function')
+    expect(Deck).to.be.a('function');
   });
-  
+
   it('should be instatiated with a card array', () => {
     const deck = new Deck([card1, card2]);
     expect(deck.cards).to.deep.equal([card1, card2]);

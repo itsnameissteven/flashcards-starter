@@ -3,13 +3,13 @@ const Turn = require("./Turn");
 class Round {
   constructor(deck) {
     this.deck = deck;
-    this.turns = 0;
+    this.numOfTurns = 0;
     this.incorrectGuesses = [];
     this.correctGuesses = [];
   }
 
   returnCurrentCard() {
-    return this.deck.cards[this.turns]
+    return this.deck.cards[this.numOfTurns];
   }
 
   takeTurn(guess) {
@@ -19,7 +19,7 @@ class Round {
     } else {
       this.incorrectGuesses.push(this.returnCurrentCard());
     }
-    this.turns++;
+    this.numOfTurns++;
     return this.currentTurn.giveFeedback();
   }
 
@@ -28,7 +28,7 @@ class Round {
   }
 
   endRound() {
-    console.log(`Round over you answered ${this.calculatePercentageCorrect()}% of the questions correctly!`);
+    return `Round over you answered ${this.calculatePercentageCorrect()}% of the questions correctly!`;
   }
 }
 
