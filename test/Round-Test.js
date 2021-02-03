@@ -33,17 +33,13 @@ describe('Round', function() {
   });
 
   describe('Round Methods', function() {
-    const card1 = new Card(1, "What allows you to define a set of related information using key-value pairs?", ["object", "array", "function", "object"], "object");
-    const card2 = new Card(12, "Which iteration method returns an array of the same length as the original array?", ["map()", "forEach()", "reduce()"], "map()");
-    const card3 = new Card(8, "What do iterator methods take in as their first argument?", ["callback function", "current element", "an array"], "callback function");
-    const deckOfCards = new Deck([card1, card2, card3]);
     const round = new Round(deckOfCards);
 
-    it.skip('should return the current card', () => {
+    it('should return the current card', () => {
       expect(round.returnCurrentCard()).to.deep.equal(card1)
     });
 
-    it.skip('should instantiate a new instance of Turn', () => {
+    it('should instantiate a new instance of Turn', () => {
       const turn = round.takeTurn('object');
       expect(turn).to.be.an.instanceOf(Turn);
     });
