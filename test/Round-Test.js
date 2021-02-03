@@ -6,24 +6,28 @@ const Card = require('../src/Card');
 const Turn = require('../src/Turn');
 
 describe('Round', function() {
+  const card1 = new Card(1, "What allows you to define a set of related information using key-value pairs?", ["object", "array", "function", "object"], "object");
+  const card2 = new Card(12, "Which iteration method returns an array of the same length as the original array?", ["map()", "forEach()", "reduce()"], "map()");
+  const card3 = new Card(8, "What do iterator methods take in as their first argument?", ["callback function", "current element", "an array"], "callback function");
+  const deckOfCards = new Deck([card1, card2, card3]);
   
   it('should be a function', () => {
-    const round = new Round();
+   const round = new Round(deckOfCards);
     expect(Round).to.be.a('function');
   });
 
-  it.skip('should take in a deck of cards', () => {
-    const round = new Round();
+  it('should take in a deck of cards', () => {
+    const round = new Round(deckOfCards);
     expect(round.deck).to.deep.equal(deckOfCards);
   });
 
-  it.skip('should have a default turn value of 0', () => {
-    const round = new Round();
+  it('should have a default turn value of 0', () => {
+    const round = new Round(deckOfCards);
     expect(round.turns).to.deep.equal(0)
-  })
+  });
   
-  it.skip('should store incorrect and correct guesses', () => {
-    const round = new Round();
+  it('should store incorrect and correct guesses', () => {
+    const round = new Round(deckOfCards);
     expect(round.incorrectGuesses).to.deep.equal([]);
     expect(round.correctGuesses).to.deep.equal([]);
   });
@@ -37,6 +41,11 @@ describe('Round', function() {
 
     it.skip('should return the current card', () => {
       expect(round.returnCurrentCard()).to.deep.equal(card1)
+    });
+
+    it.skip('should instantiate a new instance of Turn', () => {
+      const turn = round.takeTurn('object');
+      expect(turn).to.be.an.instanceOf(Turn);
     });
 
     it.skip('should update turn count', () => {
@@ -68,11 +77,6 @@ describe('Round', function() {
     it.skip('should change current card to next card after turn', () => {
       round.takeTurn('object'); 
       expect(round.returnCurrentCard()).to.deep.equal(card2);
-    });
-
-    it.skip('should instantiate a new instance of Turn', () => {
-      const turn = round.takeTurn('object');
-      expect(turn).to.be.an.instanceOf(Turn);
     });
 
     it.skip('should calculate the percentage of correct answers', () => {
