@@ -24,11 +24,11 @@ class Round {
   }
 
   calculatePercentageCorrect() {
-   return Math.floor((this.correctGuesses.length / this.deck.countCards()) * 100);
+    return Math.floor((this.correctGuesses.length / this.deck.countCards()) * 100);
   }
 
   endRound() {
-    return `Round over you answered ${this.calculatePercentageCorrect()}% of the questions correctly!`;
+    console.log(`Round over you answered ${this.calculatePercentageCorrect()}% of the questions correctly!`);
   }
 }
 
