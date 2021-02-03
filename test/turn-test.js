@@ -7,7 +7,6 @@ const Card = require('../src/Card')
 describe('Turn', function() {
   
   it('should be a function', function() {
-    const turn = new Turn();
     expect(Turn).to.be.a('function');
   });
 
@@ -53,7 +52,7 @@ describe('Turn', function() {
 
   it('should give negative feeback', function() {
     const card = new Card(8, "What does the callback function for find() return?", ["boolean", "array", "object"], "boolean");
-    const turn = new Turn('array', card) ;
+    const turn = new Turn('array', card);
     expect(turn.giveFeedback()).to.deep.equal('incorrect!');
   });
 });
