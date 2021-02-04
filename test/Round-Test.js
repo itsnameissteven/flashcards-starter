@@ -13,11 +13,18 @@ describe('Round', () => {
   const deckOfCards = new Deck(cards);
   const round = new Round(deckOfCards);
 
+  const playTurns = () => {
+      round.takeTurn('css');
+      round.takeTurn('dinner');
+      round.takeTurn('true');
+  };
+
   beforeEach( () => {
     round.numOfTurns = 0;
     round.correctGuesses = [];
     round.incorrectGuesses = [];
-  })
+    round.begginningTime = new Date()
+  });
 
   it('should be a function', () => {
     expect(Round).to.be.a('function');
@@ -34,6 +41,11 @@ describe('Round', () => {
     expect(round.correctGuesses).to.deep.equal([]);
     expect(round.currentTurn).to.deep.equal({});
   });
+  
+  it('should have a beginning time of now', () => {
+    const time = new Date()
+    expect(round.begginningTime).to.deep.equal(time)
+  });
 
   describe('Round Methods', () => {
 
@@ -47,16 +59,12 @@ describe('Round', () => {
     });
 
     it('should update turn count', () => {
-      round.takeTurn('css');
-      round.takeTurn('dinner');
-      round.takeTurn('true');
+      playTurns();
       expect(round.numOfTurns).to.deep.equal(3);
     });
 
     it('should evaluate and store correct/ incorrect answers', () => {
-      round.takeTurn('css');
-      round.takeTurn('dinner');
-      round.takeTurn('true');
+      playTurns();
       expect(round.correctGuesses, round.incorrectGuesses).to.deep.equal([card1, card3], [card2]);
     });
 
@@ -78,18 +86,23 @@ describe('Round', () => {
     });
 
     it('should calculate the percentage of correct answers', () => {
-      round.takeTurn('css');
-      round.takeTurn('dinner');
-      round.takeTurn('true');
+      playTurns();
       expect(round.calculatePercentageCorrect()).to.deep.equal(66);
     });
 
-    it('should return a message with percentage correct', () => {
-      round.takeTurn('css');
-      round.takeTurn('dinner');
-      round.takeTurn('true');
-      expect(round.endRound()).to.deep.equal('Round over you answered 66% of the questions correctly!');
+    it('should calculate the amount of time elapsed', () => {
+      const elapsedTime = round.begginningTime.valueOf() - 210000;
+      round.begginningTime = elapsedTime;
+      expect(round.calculateTimeElapsed()).to.deep.equal('3 minutes and 30 seconds')
     });
+
+    it('should return a message with percentage correct and time ', () => {
+      playTurns();
+      const elapsedTime = round.begginningTime.valueOf() - 210000;
+      round.begginningTime = elapsedTime;
+      expect(round.endRound()).to.deep.equal('Round over you answered 66% of the questions correctly in 0 minutes and 0 seconds!');
+    });
+
     
   });
 });

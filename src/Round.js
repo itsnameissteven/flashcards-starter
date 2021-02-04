@@ -7,6 +7,7 @@ class Round {
     this.incorrectGuesses = [];
     this.correctGuesses = [];
     this.currentTurn = {};
+    this.begginningTime = new Date()
   }
 
   returnCurrentCard() {
@@ -28,8 +29,16 @@ class Round {
     return Math.floor((this.correctGuesses.length / this.deck.countCards()) * 100);
   }
 
+  calculateTimeElapsed() {
+  const endTime = new Date();
+  const elapsedSeconds = (endTime - this.begginningTime) / 1000 
+  const minutes = Math.floor(elapsedSeconds / 60)
+  const seconds = Math.round(elapsedSeconds % 60);
+  return `${minutes} minutes and ${seconds} seconds`
+  }
+
   endRound() {
-    return `Round over you answered ${this.calculatePercentageCorrect()}% of the questions correctly!`;
+    return `Round over you answered ${this.calculatePercentageCorrect()}% of the questions correctly in ${this.calculateTimeElapsed()}!`;
   }
 }
 
