@@ -1,58 +1,55 @@
 const chai = require('chai');
 const expect = chai.expect;
-
 const Turn = require('../src/Turn');
 const Card = require('../src/Card')
 
-describe('Turn', function() {
-  
-  it('should be a function', function() {
+describe('Turn', () => {
+  const card = new Card(6, "The mountains are greater than the ocean?", ["true", "false"], "true");
+
+  it('should be a function', () => {
     expect(Turn).to.be.a('function');
   });
 
-  it('should be an instance of Turn', function() {
+  it('should be an instance of Turn', () => {
     const turn = new Turn();
     expect(turn).to.be.an.instanceOf(Turn);
   });
 
-  it('should store a user guess', function() {
-    const turn = new Turn('object');
-    expect(turn.guess).to.equal('object');
+  it('should store a user\'s guess', () => {
+    const turn = new Turn('false');
+    expect(turn.guess).to.deep.equal('false');
   });
   
-  it('should instantiate with a class of Card', function() {
-    const card = new Card(8, "What does the callback function for find() return?", ["boolean", "array", "object"], "boolean");
-    const turn = new Turn('object', card);
+  it('should instantiate with a class of Card', () => {
+    const turn = new Turn('false', card);
     expect(turn.card).to.be.an.instanceOf(Card);
+    expect(turn.card).to.equal(card);
   });
 
-  it('should have a return guess method', function() {
-    const card = new Card(8, "What does the callback function for find() return?", ["boolean", "array", "object"], "boolean");
+  it('should have a return guess method', () => {
     const turn = new Turn('object', card);
     expect(turn.returnGuess()).to.deep.equal('object');
   });
 
-  it('should return card', function() {
-    const card = new Card(8, "What does the callback function for find() return?", ["boolean", "array", "object"], "boolean");
-    const turn = new Turn('array', card);
-    expect(turn.returnCard()).to.deep.equal({id: 8, question: "What does the callback function for find() return?", answers: ["boolean", "array", "object"], correctAnswer: "boolean"});
+  it('should return card', () => {
+    const turn = new Turn('false', card);
+    expect(turn.returnCard()).to.deep.equal({id: 6, question: "The mountains are greater than the ocean?", answers: ["true", "false"], correctAnswer: "true"});
   });
 
-  it('should evaluate guess', function() {
-    const card = new Card(8, "What does the callback function for find() return?", ["boolean", "array", "object"], "boolean");
-    const turn = new Turn('boolean', card);
-    expect(turn.evaluateGuess()).to.deep.equal(true);
+  it('should evaluate guess', () => {
+    const turn1 = new Turn('false', card);
+    const turn2 = new Turn('true', card);
+    expect(turn1.evaluateGuess()).to.deep.equal(false);
+    expect(turn2.evaluateGuess()).to.deep.equal(true);
   });
 
-  it('it should give positive feedback', function() {
-    const card = new Card(8, "What does the callback function for find() return?", ["boolean", "array", "object"], "boolean");
-    const turn = new Turn('boolean', card);
+  it('it should give positive feedback', () => {
+    const turn = new Turn('true', card);
     expect(turn.giveFeedback()).to.deep.equal('correct!');
   });
 
-  it('should give negative feeback', function() {
-    const card = new Card(8, "What does the callback function for find() return?", ["boolean", "array", "object"], "boolean");
-    const turn = new Turn('array', card);
+  it('should give negative feeback', () => {
+    const turn = new Turn('false', card);
     expect(turn.giveFeedback()).to.deep.equal('incorrect!');
   });
 });
