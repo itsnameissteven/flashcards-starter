@@ -6,6 +6,7 @@ class Round {
     this.numOfTurns = 0;
     this.incorrectGuesses = [];
     this.correctGuesses = [];
+    this.currentTurn = {};
   }
 
   returnCurrentCard() {

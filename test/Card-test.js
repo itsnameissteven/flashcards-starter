@@ -18,7 +18,7 @@ describe('Card', () => {
   });
 
   it('should store a question', () => {
-    expect(card.question).to.equal('What is the best food to eat?');
+    expect(card.question).to.deep.equal('What is the best food to eat?');
   });  
 
   it('should store a list of possible answers', () => {
@@ -26,6 +26,6 @@ describe('Card', () => {
   });  
 
   it('should store the correct answer', () => {
-    expect(card.correctAnswer).to.equal('pizza');
+    expect(card.correctAnswer).to.deep.equal('pizza');
   });
 });

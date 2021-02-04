@@ -5,7 +5,7 @@ const Deck = require('../src/Deck')
 
 describe('Deck', () => {
   const card1 = new Card(124, "What is the worst part of front end coding?", ["javaScript", "html", "css", "refactoring"], "css");
-  const card2 = new Card(52, "What is Steven\'s favorite meal of the day?", ["breakfast", "lunch", "dinner"], "breakfast");
+  const card2 = new Card(52, "What is Steven's favorite meal of the day?", ["breakfast", "lunch", "dinner"], "breakfast");
 
   it('should be a function', () => { 
     expect(Deck).to.be.a('function');

@@ -17,13 +17,13 @@ describe('Turn', () => {
 
   it('should store a user\'s guess', () => {
     const turn = new Turn('false');
-    expect(turn.guess).to.equal('false');
+    expect(turn.guess).to.deep.equal('false');
   });
   
   it('should instantiate with a class of Card', () => {
     const turn = new Turn('false', card);
     expect(turn.card).to.be.an.instanceOf(Card);
-    expect(turn.card).to.deep.equal(card);
+    expect(turn.card).to.equal(card);
   });
 
   it('should have a return guess method', () => {
