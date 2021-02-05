@@ -22,7 +22,7 @@ class Game {
   }
 
   start() {
-    prototypeQuestions.forEach(element => this.cards.push(new Card(element['id'], element['question'], element['answers'], element['correctAnswer'])));
+    prototypeQuestions.forEach(element => this.cards.push(new Card(element.id, element.question, element.answers, element.correctAnswer)));
     this.deck = new Deck(this.cards);
     this.currentRound = new Round(this.deck);
     this.printMessage(this.deck, this.currentRound);

@@ -14,9 +14,9 @@ describe('Round', () => {
   const round = new Round(deckOfCards);
 
   const playTurns = () => {
-      round.takeTurn('css');
-      round.takeTurn('dinner');
-      round.takeTurn('true');
+    round.takeTurn('css');
+    round.takeTurn('dinner');
+    round.takeTurn('true');
   };
 
   beforeEach( () => {
@@ -100,9 +100,7 @@ describe('Round', () => {
       playTurns();
       const elapsedTime = round.begginningTime.valueOf() - 210000;
       round.begginningTime = elapsedTime;
-      expect(round.endRound()).to.deep.equal('Round over you answered 66% of the questions correctly in 0 minutes and 0 seconds!');
-    });
-
-    
+      expect(round.endRound()).to.deep.equal('Round over you answered 66% of the questions correctly in 3 minutes and 30 seconds!');
+    });  
   });
 });

@@ -30,11 +30,11 @@ class Round {
   }
 
   calculateTimeElapsed() {
-  const endTime = new Date();
-  const elapsedSeconds = (endTime - this.begginningTime) / 1000 
-  const minutes = Math.floor(elapsedSeconds / 60)
-  const seconds = Math.round(elapsedSeconds % 60);
-  return `${minutes} minutes and ${seconds} seconds`
+    const endTime = new Date();
+    const elapsedSeconds = (endTime - this.begginningTime) / 1000 
+    const minutes = Math.floor(elapsedSeconds / 60)
+    const seconds = Math.round(elapsedSeconds % 60);
+    return `${minutes} minutes and ${seconds} seconds`
   }
 
   endRound() {
